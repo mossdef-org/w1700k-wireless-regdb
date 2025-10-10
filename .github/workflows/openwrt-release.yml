@@ -21,6 +21,7 @@ jobs:
         include:
           - version: snapshots
             target: airoha-en7523
+            build_arch: x86_64
 
     steps:
       - name: 🧾 Checkout repo
@@ -43,9 +44,9 @@ jobs:
       - name: 🧮 Compute ARCH
         run: |
           if [ "${{ matrix.version }}" = "snapshots" ]; then
-            echo "ARCH=${{ matrix.target }}-SNAPSHOT" >> "$GITHUB_ENV"
+            echo "ARCH=${{ matrix.build_arch }}-SNAPSHOT" >> "$GITHUB_ENV"
           else
-            echo "ARCH=${{ matrix.target }}-${{ matrix.version }}" >> "$GITHUB_ENV"
+            echo "ARCH=${{ matrix.build_arch }}-${{ matrix.version }}" >> "$GITHUB_ENV"
           fi
 
       - name: 🏗️ Build with OpenWrt SDK
